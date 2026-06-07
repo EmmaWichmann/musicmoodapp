@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mood Mix</title>
+    <title>MusicMoodApp</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,20 +14,28 @@
   </head>
   <body>
     <div class="page-shell">
-      <header class="hero">
-        <p class="eyebrow">Mood Mix</p>
-        <h1>Your feelings have a soundtrack.</h1>
-        <p class="hero-copy">
-          Save the songs that match your moment, whether you feel energized,
-          calm, overwhelmed, dreamy, or somewhere in between.
-        </p>
+      <header class="hero-card">
+        <div class="hero-copy-block">
+          <p class="eyebrow">MusicMoodApp</p>
+          <h1>Soundtracks for every version of you.</h1>
+          <p class="hero-copy">
+            Save the songs that match your mood, keep little notes about the
+            moment, and slowly build a library that feels like your own private
+            listening journal.
+          </p>
+        </div>
+
+        <div class="hero-glow" aria-hidden="true">
+          <div class="glow-disc disc-one"></div>
+          <div class="glow-disc disc-two"></div>
+        </div>
       </header>
 
-      <main class="layout">
+      <main class="main-layout">
         <section class="panel composer-panel">
           <div class="section-heading">
-            <p class="section-label">Add an entry</p>
-            <h2>What are you feeling right now?</h2>
+            <p class="section-label">Create a new entry</p>
+            <h2>What does today sound like?</h2>
           </div>
 
           <div class="mood-picker" id="mood-picker">
@@ -40,15 +48,17 @@
           </div>
 
           <form id="entry-form" class="entry-form">
-            <label>
-              Song
-              <input id="song-title" name="songTitle" type="text" placeholder="What song is carrying the moment?" required />
-            </label>
+            <div class="field-grid">
+              <label>
+                Song
+                <input id="song-title" name="songTitle" type="text" placeholder="What song is carrying this mood?" required />
+              </label>
 
-            <label>
-              Artist
-              <input id="artist-name" name="artistName" type="text" placeholder="Who made it?" required />
-            </label>
+              <label>
+                Artist
+                <input id="artist-name" name="artistName" type="text" placeholder="Who made it?" required />
+              </label>
+            </div>
 
             <label>
               Note
@@ -56,7 +66,7 @@
                 id="song-note"
                 name="songNote"
                 rows="4"
-                placeholder="Optional: what does this song feel like today?"
+                placeholder="Optional: why does this song fit today?"
               ></textarea>
             </label>
 
@@ -67,12 +77,52 @@
         <section class="panel library-panel">
           <div class="section-heading">
             <p class="section-label">Your library</p>
-            <h2>Moments you’ve saved</h2>
+            <h2>Saved tracks</h2>
           </div>
 
           <div id="entry-list" class="entry-list" aria-live="polite"></div>
         </section>
       </main>
+
+      <section class="media-row">
+        <article class="mini-panel">
+          <p class="mini-label">Podcast</p>
+          <h3>Coming soon</h3>
+          <p>Save episodes that match your mood, focus, or season of life.</p>
+        </article>
+
+        <article class="mini-panel">
+          <p class="mini-label">Movies</p>
+          <h3>Coming soon</h3>
+          <p>Track films that fit a feeling, an aesthetic, or a comfort watch mood.</p>
+        </article>
+
+        <article class="mini-panel">
+          <p class="mini-label">Books</p>
+          <h3>Coming soon</h3>
+          <p>Build a reading shelf based on energy, emotion, and what you need most.</p>
+        </article>
+      </section>
+
+      <section class="media-row">
+        <article class="mini-panel">
+          <p class="mini-label">Podcast</p>
+          <h3>Coming soon</h3>
+          <p>Save episodes that match your mood, focus, or season of life.</p>
+        </article>
+
+        <article class="mini-panel">
+          <p class="mini-label">Movies</p>
+          <h3>Coming soon</h3>
+          <p>Track films that fit a feeling, an aesthetic, or a comfort watch mood.</p>
+        </article>
+
+        <article class="mini-panel">
+          <p class="mini-label">Books</p>
+          <h3>Coming soon</h3>
+          <p>Build a reading shelf based on energy, emotion, and what you need most.</p>
+        </article>
+      </section>
     </div>
 
     <template id="entry-template">
