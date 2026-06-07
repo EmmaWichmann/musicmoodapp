@@ -1,32 +1,92 @@
-<link rel="stylesheet" href="style.css" />
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mood Mix</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <p class="eyebrow">Mood Mix</p>
+        <h1>Your feelings have a soundtrack.</h1>
+        <p class="hero-copy">
+          Save the songs that match your moment, whether you feel energized,
+          calm, overwhelmed, dreamy, or somewhere in between.
+        </p>
+      </header>
 
-<h1>Mood Mix</h1>
-<p>Pick a mood and save a song</p>
+      <main class="layout">
+        <section class="panel composer-panel">
+          <div class="section-heading">
+            <p class="section-label">Add an entry</p>
+            <h2>What are you feeling right now?</h2>
+          </div>
 
-<h2>Choose a mood</h2>
+          <div class="mood-picker" id="mood-picker">
+            <button class="mood-chip selected" data-mood="Euphoric" type="button">Euphoric</button>
+            <button class="mood-chip" data-mood="Soft" type="button">Soft</button>
+            <button class="mood-chip" data-mood="Anxious" type="button">Anxious</button>
+            <button class="mood-chip" data-mood="Focused" type="button">Focused</button>
+            <button class="mood-chip" data-mood="Heartbroken" type="button">Heartbroken</button>
+            <button class="mood-chip" data-mood="Hopeful" type="button">Hopeful</button>
+          </div>
 
-<div>
-    <button>Happy</button>
-    <button>Sad</button>
-    <button>Energetic</button>
-    <button>Calm</button>
-    <button>Anxious</button>
-    <button>Excited</button>
-</div>
+          <form id="entry-form" class="entry-form">
+            <label>
+              Song
+              <input id="song-title" name="songTitle" type="text" placeholder="What song is carrying the moment?" required />
+            </label>
 
-<h2>Add your song</h2>
+            <label>
+              Artist
+              <input id="artist-name" name="artistName" type="text" placeholder="Who made it?" required />
+            </label>
 
-<div>
-<input id="song-input" type="text" placeholder="Enter song name">
-<input id="artist-input" type="text" placeholder="Enter artist name">
-<button id="save-button">Save Song</button>
-</div>
+            <label>
+              Note
+              <textarea
+                id="song-note"
+                name="songNote"
+                rows="4"
+                placeholder="Optional: what does this song feel like today?"
+              ></textarea>
+            </label>
 
-<h2>Saved songs</h2>
-<p id="saved-message">No songs saved yet.</p>
+            <button class="save-button" type="submit">Save to my mix</button>
+          </form>
+        </section>
 
-<div>
+        <section class="panel library-panel">
+          <div class="section-heading">
+            <p class="section-label">Your library</p>
+            <h2>Moments you’ve saved</h2>
+          </div>
 
-</div>
+          <div id="entry-list" class="entry-list" aria-live="polite"></div>
+        </section>
+      </main>
+    </div>
 
-<script src="script.js"></script>
+    <template id="entry-template">
+      <article class="entry-card">
+        <div class="entry-topline">
+          <span class="entry-mood"></span>
+          <button class="delete-button" type="button" aria-label="Delete entry">Remove</button>
+        </div>
+        <h3 class="entry-song"></h3>
+        <p class="entry-artist"></p>
+        <p class="entry-note"></p>
+      </article>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>
