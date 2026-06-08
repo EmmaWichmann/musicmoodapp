@@ -1,5 +1,6 @@
 const form = document.getElementById("entry-form");
 const moodPicker = document.getElementById("mood-picker");
+const filterPicker = document.getElementById("filter-picker");
 const entryList = document.getElementById("entry-list");
 const template = document.getElementById("entry-template");
 const songTitleInput = document.getElementById("song-title");
@@ -9,6 +10,7 @@ const songNoteInput = document.getElementById("song-note");
 const storageKey = "mood-mix-entries";
 
 let selectedMood = "Euphoric";
+let activeFilter = "All";
 let entries = loadEntries();
 
 renderEntries();
@@ -25,6 +27,23 @@ moodPicker.addEventListener("click", (event) => {
   document.querySelectorAll(".mood-chip").forEach((chip) => {
     chip.classList.toggle("selected", chip === clickedChip);
   });
+});
+
+filterPicker.addEventListener("click", (event) => {
+  const clickedChip = event.target.closest(".filter-chip");
+
+  if (!clickedChip) {
+    return;
+  }
+
+  activeFilter = clickedChip.dataset.filter;
+
+  document.querySelectorAll(".filter-chip").forEach((chip) => {
+    chip.classList.toggle("selected", chip === clickedChip);
+  });
+
+  renderEntries();
+
 });
 
 form.addEventListener("submit", (event) => {
