@@ -30,16 +30,16 @@ moodPicker.addEventListener("click", (event) => {
 });
 
 filterPicker.addEventListener("click", (event) => {
-  const clickedChip = event.target.closest(".filter-chip");
+  const clickedFilter = event.target.closest(".filter-chip");
 
-  if (!clickedChip) {
+  if (!clickedFilter) {
     return;
   }
 
-  activeFilter = clickedChip.dataset.filter;
+  activeFilter = clickedFilter.dataset.filter;
 
   document.querySelectorAll(".filter-chip").forEach((chip) => {
-    chip.classList.toggle("selected", chip === clickedChip);
+    chip.classList.toggle("selected", chip === clickedFilter);
   });
 
   renderEntries();
@@ -96,7 +96,20 @@ function renderEntries() {
     return;
   }
 
-  entries.forEach((entry) => {
+const visibleEntries = activeFilter === "All"
+  ? entries
+  : entries.filter((entry) => entry.mood === activeFilter);
+
+  if (visibleEntries.length === 0) {
+  const emptyMessage = document.createElement("p");
+  emptyMessage.className = "empty-state";
+  emptyMessage.textContent = `No ${activeFilter} songs saved yet.`;
+  entryList.append(emptyMessage);
+  return;
+}
+
+visibleEntries.forEach((entry) => {
+  
     const entryNode = template.content.firstElementChild.cloneNode(true);
 
     entryNode.querySelector(".entry-mood").textContent = entry.mood;
