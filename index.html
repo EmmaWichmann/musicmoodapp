@@ -39,13 +39,20 @@
           </div>
 
           <div class="mood-picker" id="mood-picker">
-            <button class="mood-chip selected" data-mood="Euphoric" type="button">Euphoric</button>
+            <button class="mood-chip filter-only selected" data-filter="All" type="button">All</button>
+            <button class="mood-chip" data-mood="Euphoric" type="button">Euphoric</button>
             <button class="mood-chip" data-mood="Soft" type="button">Soft</button>
             <button class="mood-chip" data-mood="Anxious" type="button">Anxious</button>
             <button class="mood-chip" data-mood="Focused" type="button">Focused</button>
             <button class="mood-chip" data-mood="Heartbroken" type="button">Heartbroken</button>
             <button class="mood-chip" data-mood="Hopeful" type="button">Hopeful</button>
+            <button class="mood-chip" data-mood="Vacation" type="button">Vacation</button>
+            <button class="mood-chip" data-mood="Nostalgic" type="button">Nostalgic</button>
           </div>
+
+          <p class="selection-note">
+            Saving new songs as: <strong id="selected-mood-label">Euphoric</strong>
+          </p>
 
           <form id="entry-form" class="entry-form">
             <div class="field-grid">
@@ -78,15 +85,7 @@
           <div class="section-heading">
             <p class="section-label">Your library</p>
             <h2>Saved tracks</h2>
-            <div class="filter-picker" id="filter-picker">
-              <button class="filter-chip selected" data-filter="All" type="button">All</button>
-              <button class="filter-chip" data-filter="Euphoric" type="button">Euphoric</button>
-              <button class="filter-chip" data-filter="Soft" type="button">Soft</button>
-              <button class="filter-chip" data-filter="Anxious" type="button">Anxious</button>
-              <button class="filter-chip" data-filter="Focused" type="button">Focused</button>
-              <button class="filter-chip" data-filter="Heartbroken" type="button">Heartbroken</button>
-              <button class="filter-chip" data-filter="Hopeful" type="button">Hopeful</button>
-            </div>
+            <p class="library-filter-label" id="library-filter-label">Showing all songs</p>
           </div>
 
           <div id="entry-list" class="entry-list" aria-live="polite"></div>

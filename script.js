@@ -1,11 +1,12 @@
 const form = document.getElementById("entry-form");
 const moodPicker = document.getElementById("mood-picker");
-const filterPicker = document.getElementById("filter-picker");
 const entryList = document.getElementById("entry-list");
 const template = document.getElementById("entry-template");
 const songTitleInput = document.getElementById("song-title");
 const artistNameInput = document.getElementById("artist-name");
 const songNoteInput = document.getElementById("song-note");
+const selectedMoodLabel = document.getElementById("selected-mood-label");
+const libraryFilterLabel = document.getElementById("library-filter-label");
 
 const storageKey = "mood-mix-entries";
 
@@ -22,28 +23,19 @@ moodPicker.addEventListener("click", (event) => {
     return;
   }
 
-  selectedMood = clickedChip.dataset.mood;
+  if (clickedChip.dataset.filter === "All") {
+    activeFilter = "All";
+  } else {
+    selectedMood = clickedChip.dataset.mood;
+    activeFilter = selectedMood;
+    selectedMoodLabel.textContent = selectedMood;
+  }
 
   document.querySelectorAll(".mood-chip").forEach((chip) => {
     chip.classList.toggle("selected", chip === clickedChip);
   });
-});
-
-filterPicker.addEventListener("click", (event) => {
-  const clickedFilter = event.target.closest(".filter-chip");
-
-  if (!clickedFilter) {
-    return;
-  }
-
-  activeFilter = clickedFilter.dataset.filter;
-
-  document.querySelectorAll(".filter-chip").forEach((chip) => {
-    chip.classList.toggle("selected", chip === clickedFilter);
-  });
 
   renderEntries();
-
 });
 
 form.addEventListener("submit", (event) => {
@@ -86,6 +78,8 @@ entryList.addEventListener("click", (event) => {
 
 function renderEntries() {
   entryList.innerHTML = "";
+  libraryFilterLabel.textContent =
+    activeFilter === "All" ? "Showing all songs" : `Showing ${activeFilter} songs`;
 
   if (entries.length === 0) {
     const emptyMessage = document.createElement("p");
@@ -96,20 +90,20 @@ function renderEntries() {
     return;
   }
 
-const visibleEntries = activeFilter === "All"
-  ? entries
-  : entries.filter((entry) => entry.mood === activeFilter);
+  const visibleEntries =
+    activeFilter === "All"
+      ? entries
+      : entries.filter((entry) => entry.mood === activeFilter);
 
   if (visibleEntries.length === 0) {
-  const emptyMessage = document.createElement("p");
-  emptyMessage.className = "empty-state";
-  emptyMessage.textContent = `No ${activeFilter} songs saved yet.`;
-  entryList.append(emptyMessage);
-  return;
-}
+    const emptyMessage = document.createElement("p");
+    emptyMessage.className = "empty-state";
+    emptyMessage.textContent = `No ${activeFilter} songs saved yet.`;
+    entryList.append(emptyMessage);
+    return;
+  }
 
-visibleEntries.forEach((entry) => {
-  
+  visibleEntries.forEach((entry) => {
     const entryNode = template.content.firstElementChild.cloneNode(true);
 
     entryNode.querySelector(".entry-mood").textContent = entry.mood;
