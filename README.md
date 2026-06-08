@@ -27,5 +27,4 @@ This is an early learning project built while practicing `HTML`, `CSS`, and `Jav
 
 - improve the final name and branding
 - display saved entries more clearly
-- save entries between sessions
 - refine the visual design
