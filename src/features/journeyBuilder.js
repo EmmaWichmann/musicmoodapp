@@ -84,17 +84,19 @@ export function initJourneyBuilder() {
         el("span", { class: "plane-label energy-bottom", text: "Low energy" }),
         el("span", { class: "plane-label valence-left", text: "Unpleasant" }),
         el("span", { class: "plane-label valence-right", text: "Pleasant" }),
-        renderPlane({ points: pathPoints, path: pathPoints }),
-        el("span", {
-          class: "plane-tag plane-tag-start",
-          style: `left:${pathPoints[0].xPct}%; top:${pathPoints[0].yPct}%`,
-          text: journey.fromMood,
-        }),
-        el("span", {
-          class: "plane-tag plane-tag-end",
-          style: `left:${pathPoints.at(-1).xPct}%; top:${pathPoints.at(-1).yPct}%`,
-          text: journey.toMood,
-        }),
+        el("div", { class: "plane-inner" }, [
+          renderPlane({ points: pathPoints, path: pathPoints }),
+          el("span", {
+            class: "plane-tag plane-tag-start",
+            style: `left:${pathPoints[0].xPct}%; top:${pathPoints[0].yPct}%`,
+            text: journey.fromMood,
+          }),
+          el("span", {
+            class: "plane-tag plane-tag-end",
+            style: `left:${pathPoints.at(-1).xPct}%; top:${pathPoints.at(-1).yPct}%`,
+            text: journey.toMood,
+          }),
+        ]),
       ]),
       el("details", { class: "explain-panel" }, [
         el("summary", { text: "How this journey was generated" }),

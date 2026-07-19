@@ -43,7 +43,7 @@ export function initMoodMap() {
         el("span", { class: "plane-label energy-bottom", text: "Low energy" }),
         el("span", { class: "plane-label valence-left", text: "Unpleasant" }),
         el("span", { class: "plane-label valence-right", text: "Pleasant" }),
-        renderPlane({ points }),
+        el("div", { class: "plane-inner" }, [renderPlane({ points })]),
       ]),
       el(
         "ul",
