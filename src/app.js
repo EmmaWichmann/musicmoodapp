@@ -5,6 +5,7 @@ import { initReflectionsFeed } from "./features/reflectionsFeed.js";
 import { initPatternsDashboard } from "./features/patternsDashboard.js";
 import { initRoadmap } from "./features/roadmap.js";
 import { initAbout } from "./features/about.js";
+import { initTheme } from "./features/theme.js";
 
 function initTabs({ onActivate } = {}) {
   const tabButtons = [...document.querySelectorAll(".tab-button")];
@@ -47,6 +48,7 @@ function initTabs({ onActivate } = {}) {
 }
 
 function main() {
+  initTheme();
   const compose = initCompose();
   const journeyBuilder = initJourneyBuilder();
   const reflectionsFeed = initReflectionsFeed();

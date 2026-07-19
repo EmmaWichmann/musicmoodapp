@@ -20,6 +20,12 @@
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
     <div class="page-shell">
+      <div class="utility-row">
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false">
+          <span id="theme-toggle-label">Dark mode</span>
+        </button>
+      </div>
+
       <header class="hero-card">
         <div class="hero-copy-block">
           <p class="eyebrow">MusicMoodApp</p>
@@ -103,6 +109,14 @@
               <div id="entry-list" class="entry-list" aria-live="polite"></div>
             </section>
           </div>
+
+          <section class="panel-inset mood-map-panel">
+            <div class="section-heading">
+              <p class="section-label">Your emotional footprint</p>
+              <h2 class="mood-map-heading">Where your library actually sits</h2>
+            </div>
+            <div id="mood-map-root"></div>
+          </section>
         </section>
 
         <!-- Context Mode -->

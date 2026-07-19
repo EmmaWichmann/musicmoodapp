@@ -29,6 +29,16 @@ export function isKnownMood(name) {
   return MOOD_NAMES.has(name);
 }
 
+// Converts a mood's energy/valence coordinates into percentage position on a
+// 2D plane (0-100 for both axes), for rendering the mood map. Valence maps to
+// x (unpleasant -> pleasant, left to right); energy maps to y, inverted
+// because SVG y grows downward and "high energy" should render near the top.
+export function planePosition(energy, valence) {
+  const xPct = ((valence + 2) / 4) * 100;
+  const yPct = 100 - ((energy - 1) / 4) * 100;
+  return { xPct, yPct };
+}
+
 // Nearest mood(s) to a point in energy/valence space, by Euclidean distance.
 // Used to translate an interpolated "target feeling" back into a real, pickable
 // mood tag. Returns the closest match; ties are broken by list order so the

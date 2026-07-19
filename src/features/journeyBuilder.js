@@ -1,8 +1,9 @@
 import { el, clear } from "../lib/dom.js";
-import { MOODS } from "../lib/moods.js";
+import { MOODS, planePosition } from "../lib/moods.js";
 import { buildJourney, explainJourney } from "../lib/journey.js";
 import { getEntries, getJourneys, saveJourneys, newId } from "../lib/storage.js";
 import { openReflectionModal } from "./reflectionModal.js";
+import { renderPlane } from "../lib/planeChart.js";
 
 export function initJourneyBuilder() {
   const root = document.getElementById("journey-root");
@@ -72,7 +73,29 @@ export function initJourneyBuilder() {
 
     const entries = getEntries();
 
+    const pathPoints = journey.stages.map((stage) => ({
+      ...planePosition(stage.energyTarget, stage.valenceTarget),
+      variant: "path",
+    }));
+
     journeyOutput = el("div", { class: "journey-output" }, [
+      el("div", { class: "plane-wrap journey-plane" }, [
+        el("span", { class: "plane-label energy-top", text: "High energy" }),
+        el("span", { class: "plane-label energy-bottom", text: "Low energy" }),
+        el("span", { class: "plane-label valence-left", text: "Unpleasant" }),
+        el("span", { class: "plane-label valence-right", text: "Pleasant" }),
+        renderPlane({ points: pathPoints, path: pathPoints }),
+        el("span", {
+          class: "plane-tag plane-tag-start",
+          style: `left:${pathPoints[0].xPct}%; top:${pathPoints[0].yPct}%`,
+          text: journey.fromMood,
+        }),
+        el("span", {
+          class: "plane-tag plane-tag-end",
+          style: `left:${pathPoints.at(-1).xPct}%; top:${pathPoints.at(-1).yPct}%`,
+          text: journey.toMood,
+        }),
+      ]),
       el("details", { class: "explain-panel" }, [
         el("summary", { text: "How this journey was generated" }),
         el("p", { text: explainJourney(journey) }),

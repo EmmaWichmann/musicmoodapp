@@ -1,8 +1,10 @@
 import { MOODS } from "../lib/moods.js";
 import { getEntries, saveEntries, newId } from "../lib/storage.js";
 import { openReflectionModal } from "./reflectionModal.js";
+import { initMoodMap } from "./moodMap.js";
 
 export function initCompose() {
+  const moodMap = initMoodMap();
   const form = document.getElementById("entry-form");
   const moodPicker = document.getElementById("mood-picker");
   const entryList = document.getElementById("entry-list");
@@ -96,6 +98,7 @@ export function initCompose() {
   });
 
   function renderEntries() {
+    moodMap.render(entries);
     entryList.innerHTML = "";
     libraryFilterLabel.textContent =
       activeFilter === "All" ? "Showing all songs" : `Showing ${activeFilter} songs`;
