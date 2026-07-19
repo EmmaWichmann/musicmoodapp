@@ -74,6 +74,12 @@ function main() {
 
   initRoadmap();
   initAbout();
+
+  document.getElementById("footer-about-link").addEventListener("click", () => {
+    tabs.goTo("tab-about");
+    const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    document.getElementById("tab-about").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+  });
 }
 
 main();

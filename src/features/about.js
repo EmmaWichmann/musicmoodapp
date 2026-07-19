@@ -25,6 +25,35 @@ export function initAbout() {
         }),
       ]),
 
+      el("div", { class: "panel-inset business-case" }, [
+        el("h3", { text: "The business case, not just the personal one" }),
+        el("p", {
+          text:
+            "Streaming platforms have effectively unlimited catalogs, but deciding what to play remains a real source of friction — the industry's own term for it is choice paralysis. Existing mood and activity playlists narrow the catalog by label, but they're one-way: nothing confirms whether what a listener picked actually met their need, and nothing adapts as the session goes on. That gap has a business cost, not just a UX cost — time spent browsing instead of listening lowers session engagement, mismatched recommendations raise skip rates, and platforms are left inferring 'this worked' from skip/completion behavior alone, a noisy proxy with no direct signal underneath it.",
+        }),
+        el("h4", { text: "Where this fits as a product" }),
+        el("ul", { class: "plain-list" }, [
+          el("li", {}, [
+            el("strong", { text: "As a feature inside an existing platform. " }),
+            "Context Mode and the Journey Builder are a faster, more structured way to decide what to play — the kind of session-mode feature a Spotify or Apple Music could ship to cut time-to-first-play. Reflection Cards give the product team something they don't currently have: a direct, opted-in signal for whether a recommendation actually worked, instead of inferring it from skips.",
+          ]),
+          el("li", {}, [
+            el("strong", { text: "As a licensable layer for other products. " }),
+            "Workplace wellness and EAP benefit providers, and meditation apps, already sell attention and emotional-state features (breathing exercises, sound baths) but generally don't build music-specific tooling. The mood taxonomy, journey logic, and feedback loop here are exactly the pieces a smaller product would otherwise have to build from scratch.",
+          ]),
+        ]),
+        el("h4", { text: "How a business would know it's working" }),
+        el("p", {
+          text:
+            "Time-to-first-play, session completion rate, Reflection Card completion rate, and 7/30-day retention for users who engage with Journeys or Context Mode versus those who don't. The Patterns dashboard in this app (src/lib/patterns.js) is already the same kind of aggregation layer a product team would build internally to track exactly these numbers — it just reports them back to the user instead of to a dashboard.",
+        }),
+        el("h4", { text: "How it could make money" }),
+        el("p", {
+          text:
+            "Freemium is the most direct model and mirrors how streaming platforms already segment free versus paid: mood tagging and the library stay free, Journey Builder, Patterns, and unlimited Reflections sit behind a subscription tier. The more ambitious version is a usage-priced API for the B2B case above.",
+        }),
+      ]),
+
       el("div", { class: "panel-inset" }, [
         el("h3", { text: "How I used AI" }),
         el("p", {
