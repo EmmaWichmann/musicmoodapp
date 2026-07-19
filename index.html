@@ -3,7 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MusicMoodApp</title>
+    <title>MusicMoodApp — an emotional music companion</title>
+    <meta
+      name="description"
+      content="MusicMoodApp helps you decide what you need from music right now — not just what genre you want."
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,15 +17,18 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
     <div class="page-shell">
       <header class="hero-card">
         <div class="hero-copy-block">
           <p class="eyebrow">MusicMoodApp</p>
-          <h1>Soundtracks for every version of you.</h1>
+          <h1>How do you feel now — and how do you want to feel when the music ends?</h1>
           <p class="hero-copy">
-            Save the songs that match your mood, keep little notes about the
-            moment, and slowly build a library that feels like your own private
-            listening journal.
+            Most music apps start by asking what you want to hear. This one starts with what you
+            need: your mood, your energy, how much time you have, and where you're trying to go
+            emotionally. Build a listening journey, check in with a Context Mode for the moment
+            you're in, and see the patterns in how music actually affects you over time.
           </p>
         </div>
 
@@ -31,93 +38,151 @@
         </div>
       </header>
 
-      <main class="main-layout">
-        <section class="panel composer-panel">
-          <div class="section-heading">
-            <p class="section-label">Create a new entry</p>
-            <h2>What does today sound like?</h2>
+      <nav class="tab-bar" role="tablist" aria-label="App sections" id="tab-bar">
+        <button class="tab-button" role="tab" id="tab-btn-compose" aria-controls="tab-compose" aria-selected="true" type="button">Compose &amp; Library</button>
+        <button class="tab-button" role="tab" id="tab-btn-context" aria-controls="tab-context" aria-selected="false" type="button" tabindex="-1">Context Mode</button>
+        <button class="tab-button" role="tab" id="tab-btn-journey" aria-controls="tab-journey" aria-selected="false" type="button" tabindex="-1">Journey Builder</button>
+        <button class="tab-button" role="tab" id="tab-btn-reflections" aria-controls="tab-reflections" aria-selected="false" type="button" tabindex="-1">Reflections</button>
+        <button class="tab-button" role="tab" id="tab-btn-patterns" aria-controls="tab-patterns" aria-selected="false" type="button" tabindex="-1">My Patterns</button>
+        <button class="tab-button" role="tab" id="tab-btn-roadmap" aria-controls="tab-roadmap" aria-selected="false" type="button" tabindex="-1">Roadmap</button>
+        <button class="tab-button" role="tab" id="tab-btn-about" aria-controls="tab-about" aria-selected="false" type="button" tabindex="-1">About This Project</button>
+      </nav>
+
+      <main id="main-content">
+        <!-- Compose & Library -->
+        <section class="tab-panel" id="tab-compose" role="tabpanel" aria-labelledby="tab-btn-compose" tabindex="0">
+          <div class="main-layout">
+            <section class="panel composer-panel">
+              <div class="section-heading">
+                <p class="section-label">Create a new entry</p>
+                <h2>What does today sound like?</h2>
+              </div>
+
+              <div class="mood-picker" id="mood-picker">
+                <button class="mood-chip filter-only selected" data-filter="All" type="button">All</button>
+              </div>
+
+              <p class="selection-note">
+                Saving new songs as: <strong id="selected-mood-label">Euphoric</strong>
+              </p>
+
+              <form id="entry-form" class="entry-form">
+                <div class="field-grid">
+                  <label>
+                    Song
+                    <input id="song-title" name="songTitle" type="text" placeholder="What song is carrying this mood?" required />
+                  </label>
+
+                  <label>
+                    Artist
+                    <input id="artist-name" name="artistName" type="text" placeholder="Who made it?" required />
+                  </label>
+                </div>
+
+                <label>
+                  Note
+                  <textarea
+                    id="song-note"
+                    name="songNote"
+                    rows="4"
+                    placeholder="Optional: why does this song fit today?"
+                  ></textarea>
+                </label>
+
+                <button class="save-button" type="submit">Save to my mix</button>
+              </form>
+            </section>
+
+            <section class="panel library-panel">
+              <div class="section-heading">
+                <p class="section-label">Your library</p>
+                <h2>Saved tracks</h2>
+                <p class="library-filter-label" id="library-filter-label">Showing all songs</p>
+              </div>
+
+              <div id="entry-list" class="entry-list" aria-live="polite"></div>
+            </section>
           </div>
-
-          <div class="mood-picker" id="mood-picker">
-            <button class="mood-chip filter-only selected" data-filter="All" type="button">All</button>
-            <button class="mood-chip" data-mood="Euphoric" type="button">Euphoric</button>
-            <button class="mood-chip" data-mood="Soft" type="button">Soft</button>
-            <button class="mood-chip" data-mood="Anxious" type="button">Anxious</button>
-            <button class="mood-chip" data-mood="Focused" type="button">Focused</button>
-            <button class="mood-chip" data-mood="Heartbroken" type="button">Heartbroken</button>
-            <button class="mood-chip" data-mood="Hopeful" type="button">Hopeful</button>
-            <button class="mood-chip" data-mood="Vacation" type="button">Vacation</button>
-            <button class="mood-chip" data-mood="Nostalgic" type="button">Nostalgic</button>
-          </div>
-
-          <p class="selection-note">
-            Saving new songs as: <strong id="selected-mood-label">Euphoric</strong>
-          </p>
-
-          <form id="entry-form" class="entry-form">
-            <div class="field-grid">
-              <label>
-                Song
-                <input id="song-title" name="songTitle" type="text" placeholder="What song is carrying this mood?" required />
-              </label>
-
-              <label>
-                Artist
-                <input id="artist-name" name="artistName" type="text" placeholder="Who made it?" required />
-              </label>
-            </div>
-
-            <label>
-              Note
-              <textarea
-                id="song-note"
-                name="songNote"
-                rows="4"
-                placeholder="Optional: why does this song fit today?"
-              ></textarea>
-            </label>
-
-            <button class="save-button" type="submit">Save to my mix</button>
-          </form>
         </section>
 
-        <section class="panel library-panel">
+        <!-- Context Mode -->
+        <section class="tab-panel is-hidden" id="tab-context" role="tabpanel" aria-labelledby="tab-btn-context" tabindex="0">
           <div class="section-heading">
-            <p class="section-label">Your library</p>
-            <h2>Saved tracks</h2>
-            <p class="library-filter-label" id="library-filter-label">Showing all songs</p>
+            <p class="section-label">Context Mode</p>
+            <h2>What's the situation, not just the mood?</h2>
+            <p class="panel-intro">
+              Choose what you're actually doing. The app suggests a fitting energy range and time
+              budget instead of asking you to translate "studying" into a genre yourself.
+            </p>
           </div>
+          <div id="context-root"></div>
+        </section>
 
-          <div id="entry-list" class="entry-list" aria-live="polite"></div>
+        <!-- Journey Builder -->
+        <section class="tab-panel is-hidden" id="tab-journey" role="tabpanel" aria-labelledby="tab-btn-journey" tabindex="0">
+          <div class="section-heading">
+            <p class="section-label">Emotional Journey Builder</p>
+            <h2>From how you feel, to how you want to feel</h2>
+            <p class="panel-intro">
+              Not a static playlist — a structured path. Pick a starting feeling, a destination
+              feeling, and how much time you have, and the app builds a small sequence of stages
+              that move gradually between them.
+            </p>
+          </div>
+          <div id="journey-root"></div>
+        </section>
+
+        <!-- Reflections -->
+        <section class="tab-panel is-hidden" id="tab-reflections" role="tabpanel" aria-labelledby="tab-btn-reflections" tabindex="0">
+          <div class="section-heading">
+            <p class="section-label">Music Reflection Cards</p>
+            <h2>Did it actually help?</h2>
+            <p class="panel-intro">
+              A short check-in after listening — not a diagnosis. Over time this builds a picture
+              of what tends to help you, in your own words.
+            </p>
+          </div>
+          <div id="reflections-root"></div>
+        </section>
+
+        <!-- My Patterns -->
+        <section class="tab-panel is-hidden" id="tab-patterns" role="tabpanel" aria-labelledby="tab-btn-patterns" tabindex="0">
+          <div class="section-heading">
+            <p class="section-label">My Listening Patterns</p>
+            <h2>What your library says about you</h2>
+            <p class="panel-intro">
+              Built entirely from what you've saved and reflected on — nothing here is guessed or
+              pulled from outside listening data.
+            </p>
+          </div>
+          <div id="patterns-root"></div>
+        </section>
+
+        <!-- Roadmap / Coming Soon -->
+        <section class="tab-panel is-hidden" id="tab-roadmap" role="tabpanel" aria-labelledby="tab-btn-roadmap" tabindex="0">
+          <div class="section-heading">
+            <p class="section-label">Coming Soon</p>
+            <h2>Adaptive Soundtrack</h2>
+            <p class="panel-intro">Where this product goes next, and how it would handle your data if it did.</p>
+          </div>
+          <div id="roadmap-root"></div>
+        </section>
+
+        <!-- About -->
+        <section class="tab-panel is-hidden" id="tab-about" role="tabpanel" aria-labelledby="tab-btn-about" tabindex="0">
+          <div id="about-root"></div>
         </section>
       </main>
-
-      <section class="media-row">
-        <article class="mini-panel">
-          <p class="mini-label">Podcast</p>
-          <h3>Coming soon</h3>
-          <p>Save episodes that match your mood, focus, or season of life.</p>
-        </article>
-
-        <article class="mini-panel">
-          <p class="mini-label">Movies</p>
-          <h3>Coming soon</h3>
-          <p>Track films that fit a feeling, an aesthetic, or a comfort watch mood.</p>
-        </article>
-
-        <article class="mini-panel">
-          <p class="mini-label">Books</p>
-          <h3>Coming soon</h3>
-          <p>Build a reading shelf based on energy, emotion, and what you need most.</p>
-        </article>
-      </section>
     </div>
 
     <template id="entry-template">
       <article class="entry-card">
         <div class="entry-topline">
           <span class="entry-mood"></span>
-          <button class="delete-button" type="button" aria-label="Delete entry">Remove</button>
+          <div class="entry-actions">
+            <button class="reflect-button" type="button">Reflect</button>
+            <button class="delete-button" type="button" aria-label="Delete entry">Remove</button>
+          </div>
         </div>
         <h3 class="entry-song"></h3>
         <p class="entry-artist"></p>
@@ -125,6 +190,6 @@
       </article>
     </template>
 
-    <script src="script.js"></script>
+    <script type="module" src="src/app.js"></script>
   </body>
 </html>

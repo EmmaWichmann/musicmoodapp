@@ -1,0 +1,15 @@
+{
+  "name": "music-mood-app",
+  "version": "2.0.0",
+  "private": true,
+  "description": "An emotional music companion — helps you decide what you need from music right now, not just what genre you want.",
+  "type": "module",
+  "scripts": {
+    "dev": "npx --yes serve . -l 5500",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.4"
+  }
+}
