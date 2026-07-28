@@ -1,62 +1,72 @@
-Music Mood App 🎵✨
-A highly interactive, client-side web application designed to categorize, save, and curate musical tracks based on specific emotional states and contextual moods. This project showcases core software engineering competencies in event-driven JavaScript design, semantic DOM manipulation, and tokenized CSS layout responsiveness.
+# Music Mood App
 
-🚀 Live System Deployment
-Explore the production interface: Music Mood App Live Interface
+Music Mood App is a small front end project for organizing songs into mood based collections through an interactive browser interface.
 
-💡 Engineering & Design Philosophy
-The Objective (The "Why")
-Standard music streaming tools are heavily centered on artists, genres, and complex algorithmic feeds. However, human media consumption behavior is highly dependent on situational mood. This application acts as a streamlined utility to bridge the gap between emotional psychology and audio organizational workflows.
+## Overview
 
-Music Mood App provides a targeted, distraction-free digital space for users to tag, save, and dynamically map out songs according to how they feel, creating an intentional and highly customized listening framework.
+The project explores organizing music around emotional context rather than only artist or genre. Users enter song information and assign it to a mood, building a personal library over time. It also includes tools for picking music for a situation, planning a short sequence of moods between two feelings, and checking in on whether a song helped.
 
-Cross-Functional Value
-By blending frontend implementation with an intuitive understanding of user behavior patterns, the project illustrates how pure, utility-focused web applications can eliminate feature bloat. The system structure is built consciously to emphasize direct interactive validation and modern UI design practices.
+## Features
 
-🛠️ Technical Competencies & Core Stack
-Front-End Architecture: Semantic HTML5 workspace components, Vanilla JavaScript (ES6+ Architecture), Advanced CSS Custom Properties (Programmatic Themes)
+- Adding song titles, artists, and an optional note
+- Selecting a mood from a fixed set of twelve moods
+- Rendering each saved song as a card, with filtering the library by mood
+- Deleting songs
+- Form validation requiring a title and artist before saving
+- A visual map of the saved library on an energy/valence plane
+- Context Mode: pick a situation (studying, commuting, exercise, etc.) for a suggested mood and time budget
+- Journey Builder: pick a starting and ending mood for a short, explained sequence between them
+- Reflection Cards: a short check-in after listening on whether it helped
+- A patterns dashboard summarizing saved songs, journeys, and reflections
+- Light/dark theme toggle, remembered between visits
+- Local storage for songs, journeys, reflections, and theme preference
+- Responsive layout down to mobile widths
 
-UI Design & Layouts: Responsive Flexbox grid distributions, mobile-first design adaptability, smooth interactive states
+Editing a saved song isn't supported — only adding and deleting.
 
-State & Event Management: Form validation data extraction, dynamic element creation, event listener pooling
+## Built With
 
-🏗️ Technical Architecture & Data Flow
-The application utilizes an efficient event-driven lifecycle to process user inputs and instantly re-render the playlist displays without unnecessary processing lag.
+- HTML — the tabbed app shell and song entry form
+- CSS — theme variables, layout, and responsive breakpoints
+- JavaScript (ES modules, no framework) — forms, tab switching, mood logic, local storage
+- GitHub Pages — hosts the live app
 
-User Input Action: Receives song URLs, track titles, and specific emotional mood selectors via standard submission forms.
+## How It Works
 
-Algorithmic Asset Mapping: Converts data fields dynamically into encapsulated data elements inside active memory loops.
+The song form collects a title, artist, and optional note. On submit, JavaScript builds a song card, adds it to the library, and saves it to local storage, so songs remain after a refresh. A mood chip sets the mood for new songs and filters the library. Context Mode and Journey Builder work from a small mood taxonomy — each mood has an energy and valence value — to suggest moods and build a short, explained path between a starting and ending feeling, entirely in the browser. Reflection Cards and the patterns dashboard read back from what's already saved. There's no embedded playback or links to external songs; entries only store what's typed into the form.
 
-Targeted UI Injection: Targets the corresponding mood panel container, updating the layout without requiring page refreshes or external asset reloads.
+## Local Setup
 
-Core Engineering Highlights
-Event-Driven Asynchronous Behavior: Employs optimized event listeners to handle incoming song submissions seamlessly, managing data inputs cleanly without breaking the performance runtime.
+```bash
+git clone https://github.com/EmmaWichmann/musicmoodapp.git
+cd musicmoodapp
+npm install
+npm run dev
+```
 
-Tokenized UI Design: Built completely upon a design system driven by CSS variable tokens. This ensures that thematic colors, user interact elements, typography scales, and padding guidelines stay mathematically consistent across components.
+ES modules must be served over HTTP, not opened directly as a file — `npm run dev` starts a local server at http://localhost:5500.
 
-Fluid Layout Matrix: Utilizes a highly flexible structural framework that re-arranges data cards naturally depending on the size of the viewport, maintaining design integrity across all mobile and desktop surfaces.
+Live project:
+https://emmawichmann.github.io/musicmoodapp/
 
-📁 Repository Blueprint
-index.html — Structured markup skeleton, input component fields, and dedicated mood display layout boundaries
+Source:
+https://github.com/EmmaWichmann/musicmoodapp
 
-style.css — Theme token design variables, clean transition rules, and fluid screen layout safety settings
+## Current Limitations
 
-script.js — Event handling logic, state manipulation controllers, and dynamic front-end content injection
+- No account system, cloud sync, or database backend
+- Songs, journeys, and reflections disappear if local storage is cleared or a different browser/device is used
+- Songs can't be edited after saving, only deleted
+- No embedded audio playback or links to the actual songs
+- Form validation only checks that a title and artist are present
 
-README.md — Professional case study and comprehensive technical system documentation
+## What This Project Demonstrates
 
-🧠 Solved Challenges & Key Professional Takeaways
-1. Handling Asynchronous User Input Safely
-The Challenge: Capturing diverse text variables from user forms and dynamically generating layout boxes can cause structural styling breaks or unformatted text overflows.
-
-The Resolution: Sanitized and mapped form values systematically into strict flexbox card containers. This ensures track information formats uniformly inside its allocated card spacing regardless of length variances.
-
-2. Creating an Intuitive Visual Information Hierarchy
-The Challenge: Displaying multiple mood categories simultaneously on a screen without confusing the user or cluttering the visual hierarchy.
-
-The Resolution: Implemented distinct, color-tokened visual zones using CSS parameters to create immediate psychological grouping. This clean spatial organization lets users sort through high volumes of visual data at a single glance.
-
-📈 Engineering Roadmap
-[ ] Local Data Persistence: Introducing browser storage variables to save user playlists permanently across system refreshes.
-
-[ ] Embedded Media APIs: Integrating standard media player endpoints to allow direct preview listening within the mood dashboard interface.
+- HTML, CSS, and JavaScript
+- DOM manipulation
+- Event handling
+- Form validation
+- Client side data organization
+- Responsive interface design
+- Building around a psychology informed product idea
+- AI assisted development, with human review and testing
